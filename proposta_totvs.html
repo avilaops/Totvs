@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta para TOTVS - Nicolas Avila | Diretor de Projetos</title>
+    
+    <!-- Iconoir Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #e8eaed;
+            --primary-accent: #c9ccd1;
+            --secondary: #8e9196;
+            --bg-main: #0a0b0d;
+            --bg-secondary: #12141a;
+            --bg-accent: #1a1d26;
+            --text: #e8eaed;
+            --text-secondary: #9aa0a6;
+            --text-muted: #5f6368;
+            --border: #2d3139;
+            --gold-accent: #d4af37;
+            --silver-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-main);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 11, 13, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(200, 201, 208, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 2rem 4rem;
+            background: radial-gradient(ellipse at top, #1a1d26 0%, #0a0b0d 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.15) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            color: var(--primary);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.15;
+            background: linear-gradient(135deg, #e8eaed 0%, #9aa0a6 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-cta {
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .primary-btn:hover::before {
+            left: 100%;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #12141a 0%, #0a0b0d 100%);
+            border-top: 2px solid transparent;
+            border-image: linear-gradient(90deg, transparent, #667eea 20%, #764ba2 50%, #d4af37 80%, transparent) 1;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(26, 29, 38, 0.8) 0%, rgba(18, 20, 26, 0.9) 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(200, 201, 208, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e8eaed 0%, #9aa0a6 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 6rem 2rem;
+            background: var(--bg-main);
+            position: relative;
+        }
+
+        .content-section:nth-child(even) {
+            background: linear-gradient(180deg, #0a0b0d 0%, #12141a 50%, #0a0b0d 100%);
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #e8eaed 0%, #9aa0a6 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(26, 29, 38, 0.8) 0%, rgba(18, 20, 26, 0.9) 100%);
+            border-radius: 12px;
+            padding: 2.5rem;
+            border: 1px solid rgba(200, 201, 208, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #d4af37 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .card-icon i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .card-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(200, 201, 208, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .card-list li:hover {
+            color: var(--primary);
+            padding-left: 0.5rem;
+        }
+
+        .card-list li::before {
+            content: '✓';
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 50%, #d4af37 100%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(26, 29, 38, 0.8) 0%, rgba(18, 20, 26, 0.9) 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(200, 201, 208, 0.15);
+            margin: 0 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .timeline-marker {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+            z-index: 2;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ROI Table */
+        .roi-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: linear-gradient(135deg, rgba(26, 29, 38, 0.8) 0%, rgba(18, 20, 26, 0.9) 100%);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .roi-table th,
+        .roi-table td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(200, 201, 208, 0.1);
+        }
+
+        .roi-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .roi-table tr:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .roi-table td {
+            color: var(--text-secondary);
+        }
+
+        .roi-highlight {
+            color: #d4af37;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-contact:hover {
+            color: var(--gold-accent);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                padding-left: 60px;
+            }
+
+            .timeline-marker {
+                position: absolute;
+                left: 0;
+            }
+
+            .timeline-content {
+                margin: 0;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            nav {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 2rem;
+            }
+
+            .primary-btn {
+                display: none;
+            }
+
+            .card, .timeline-content {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">PROPOSTA TOTVS</div>
+            <ul class="nav-links">
+                <li><a href="#visao">Visão Geral</a></li>
+                <li><a href="#oportunidades">Oportunidades</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#roi">ROI</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">💼 Candidatura | Diretor de Projetos</div>
+            <h1 class="hero-title">R$ 93M ARR em Oportunidades Não Exploradas</h1>
+            <p class="hero-subtitle">
+                Análise estratégica completa revelando 7 gaps críticos que a TOTVS está deixando na mesa,
+                com roadmap executável e ROI de 465% em 24 meses
+            </p>
+            <div class="hero-cta">
+                <a href="#oportunidades" class="primary-btn">Ver Análise Completa</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Gaps Críticos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">R$ 93M</div>
+                <div class="stat-label">ARR Potencial</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">465%</div>
+                <div class="stat-label">ROI em 24m</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Meses Payback</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Projetos Gerenciados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">On-Time Delivery</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visão Geral -->
+    <section class="content-section" id="visao">
+        <div class="section-container">
+            <h2 class="section-title">Quem Sou e Por Que Esta Análise</h2>
+            <p class="section-subtitle">
+                Nicolas Avila - Líder técnico apaixonado por orquestrar projetos, processos e pessoas
+            </p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-user"></i></div>
+                    <h3 class="card-title">Sobre Mim</h3>
+                    <p class="card-description">
+                        Líder técnico com histórico comprovado em gestão de projetos complexos,
+                        orquestração de equipes e implementação de frameworks de governança.
+                    </p>
+                    <ul class="card-list">
+                        <li>25+ projetos orquestrados simultaneamente</li>
+                        <li>40+ pessoas lideradas (diretas e indiretas)</li>
+                        <li>95% on-time delivery (últimos 12 meses)</li>
+                        <li>NPS 60+ em satisfação de times</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-trophy"></i></div>
+                    <h3 class="card-title">Framework Avila</h3>
+                    <p class="card-description">
+                        Ecossistema enterprise completo que desenvolvi e orquestrei,
+                        com 128K+ arquivos em produção e 25+ produtos ativos.
+                    </p>
+                    <ul class="card-list">
+                        <li>Avila Manager - Central de comando</li>
+                        <li>Avila Vault - Gestão de secrets</li>
+                        <li>Report Framework - BI automatizado</li>
+                        <li>On Platform - Semantic search + IA</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-target"></i></div>
+                    <h3 class="card-title">Minha Proposta</h3>
+                    <p class="card-description">
+                        Transformar a TOTVS de produto ERP em PLATAFORMA enterprise,
+                        capturando R$ 93M+ ARR em oportunidades não exploradas.
+                    </p>
+                    <ul class="card-list">
+                        <li>Developer Experience revolucionário</li>
+                        <li>IA Proativa (além de embarcada)</li>
+                        <li>Marketplace de 500+ apps</li>
+                        <li>Portal unificado do cliente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7 Gaps Críticos -->
+    <section class="content-section" id="oportunidades">
+        <div class="section-container">
+            <h2 class="section-title">7 Oportunidades Não Exploradas</h2>
+            <p class="section-subtitle">
+                O que a TOTVS está deixando na mesa e como capturar esse valor
+            </p>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-code"></i></div>
+                    <h3 class="card-title">1. Developer Hub</h3>
+                    <p class="card-description">
+                        Portal centralizado com docs unificadas, sandbox self-service,
+                        CLI moderno e quickstart templates. Reduzir integração de 6 meses para 1 mês.
+                    </p>
+                    <p class="roi-highlight">ROI: R$ 20M ARR</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-brain"></i></div>
+                    <h3 class="card-title">2. TOTVS Copilot</h3>
+                    <p class="card-description">
+                        Assistente IA proativo que monitora, prevê problemas, sugere ações
+                        e executa tarefas automaticamente. Mais do que IA embarcada.
+                    </p>
+                    <p class="roi-highlight">ROI: R$ 15M ARR</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-shopping-bag"></i></div>
+                    <h3 class="card-title">3. App Store</h3>
+                    <p class="card-description">
+                        Marketplace com 500+ integrações plug-and-play, 1-click install,
+                        ratings e revenue share com parceiros.
+                    </p>
+                    <p class="roi-highlight">ROI: R$ 10M ARR</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-dashboard"></i></div>
+                    <h3 class="card-title">4. TOTVS Central</h3>
+                    <p class="card-description">
+                        Portal unificado: single sign-on, dashboard consolidado,
+                        health score, billing único e self-service completo.
+                    </p>
+                    <p class="roi-highlight">ROI: R$ 8M ARR</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-chart-line"></i></div>
+                    <h3 class="card-title">5. Insights Platform</h3>
+                    <p class="card-description">
+                        Data warehouse gerenciado, APIs de dados, benchmarks de mercado
+                        (compare-se com setor) e dashboards customizáveis.
+                    </p>
+                    <p class="roi-highlight">ROI: R$ 12M ARR</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-rocket"></i></div>
+                    <h3 class="card-title">6. QuickStart</h3>
+                    <p class="card-description">
+                        Onboarding automatizado para PMEs: setup em 1 semana (vs. 6 meses),
+                        templates de indústria e IA import assistant.
+                    </p>
+                    <p class="roi-highlight">ROI: R$ 15M ARR</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-community"></i></div>
+                    <h3 class="card-title">7. Community Hub</h3>
+                    <p class="card-description">
+                        Forum Q&A, feature voting, champions program, user-generated content
+                        e roadmap aberto. 50% suporte via peer-to-peer.
+                    </p>
+                    <p class="roi-highlight">ROI: R$ 13M ARR</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="content-section" id="roadmap">
+        <div class="section-container">
+            <h2 class="section-title">Roadmap de Implementação</h2>
+            <p class="section-subtitle">
+                Plano de 24 meses dividido em 4 fases, com quick wins nos primeiros 6 meses
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Fase 1: Quick Wins (0-6 meses)</h3>
+                        <p class="timeline-description">
+                            <strong>Investimento:</strong> R$ 5M | <strong>ROI:</strong> R$ 35M ARR
+                        </p>
+                        <ul class="card-list">
+                            <li>Developer Hub com docs unificadas, sandbox e CLI básico</li>
+                            <li>QuickStart para PMEs com templates e import wizard</li>
+                            <li>Redução de 70% no time-to-value</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Fase 2: Game Changers (6-12 meses)</h3>
+                        <p class="timeline-description">
+                            <strong>Investimento:</strong> R$ 8M | <strong>ROI:</strong> R$ 28M ARR
+                        </p>
+                        <ul class="card-list">
+                            <li>TOTVS Copilot MVP com monitoramento e alertas proativos</li>
+                            <li>App Store com 50 apps iniciais e 1-click install</li>
+                            <li>Ecossistema de parceiros estabelecido</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Fase 3: Consolidação (12-18 meses)</h3>
+                        <p class="timeline-description">
+                            <strong>Investimento:</strong> R$ 4M | <strong>ROI:</strong> R$ 21M ARR
+                        </p>
+                        <ul class="card-list">
+                            <li>Insights Platform com data warehouse e APIs de dados</li>
+                            <li>Community Hub com forum, voting e champions</li>
+                            <li>Dados como produto - benchmarks vendáveis</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Fase 4: Excelência (18-24 meses)</h3>
+                        <p class="timeline-description">
+                            <strong>Investimento:</strong> R$ 3M | <strong>ROI:</strong> R$ 9M ARR
+                        </p>
+                        <ul class="card-list">
+                            <li>TOTVS Central - portal unificado completo</li>
+                            <li>SSO, health score e billing consolidado</li>
+                            <li>Experiência premium, churn mínimo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Table -->
+    <section class="content-section" id="roi">
+        <div class="section-container">
+            <h2 class="section-title">Consolidação de ROI</h2>
+            <p class="section-subtitle">
+                Investimento de R$ 20M retorna R$ 93M ARR em 24 meses - ROI de 465%
+            </p>
+
+            <table class="roi-table">
+                <thead>
+                    <tr>
+                        <th>Oportunidade</th>
+                        <th>Investimento (24m)</th>
+                        <th>ROI (24m ARR)</th>
+                        <th>Payback</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1. Developer Hub</td>
+                        <td>R$ 3M</td>
+                        <td class="roi-highlight">R$ 20M</td>
+                        <td>4 meses</td>
+                    </tr>
+                    <tr>
+                        <td>2. TOTVS Copilot</td>
+                        <td>R$ 5M</td>
+                        <td class="roi-highlight">R$ 15M</td>
+                        <td>8 meses</td>
+                    </tr>
+                    <tr>
+                        <td>3. App Store</td>
+                        <td>R$ 2M</td>
+                        <td class="roi-highlight">R$ 10M</td>
+                        <td>5 meses</td>
+                    </tr>
+                    <tr>
+                        <td>4. TOTVS Central</td>
+                        <td>R$ 4M</td>
+                        <td class="roi-highlight">R$ 8M</td>
+                        <td>12 meses</td>
+                    </tr>
+                    <tr>
+                        <td>5. Insights Platform</td>
+                        <td>R$ 3M</td>
+                        <td class="roi-highlight">R$ 12M</td>
+                        <td>6 meses</td>
+                    </tr>
+                    <tr>
+                        <td>6. QuickStart</td>
+                        <td>R$ 2M</td>
+                        <td class="roi-highlight">R$ 15M</td>
+                        <td>3 meses</td>
+                    </tr>
+                    <tr>
+                        <td>7. Community Hub</td>
+                        <td>R$ 1M</td>
+                        <td class="roi-highlight">R$ 13M</td>
+                        <td>2 meses</td>
+                    </tr>
+                    <tr style="font-weight: 700; background: rgba(102, 126, 234, 0.2);">
+                        <td>TOTAL</td>
+                        <td class="roi-highlight">R$ 20M</td>
+                        <td class="roi-highlight">R$ 93M</td>
+                        <td class="roi-highlight">5 meses</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Como Posso Ajudar -->
+    <section class="content-section">
+        <div class="section-container">
+            <h2 class="section-title">Como o Avila Framework Pode Ajudar</h2>
+            <p class="section-subtitle">
+                Já temos produtos prontos que podem ser adaptados para a TOTVS
+            </p>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-desktop-device"></i></div>
+                    <h3 class="card-title">Avila Manager → Developer Hub</h3>
+                    <p class="card-description">
+                        Portal de gestão de apps já desenvolvido, com interface 3 painéis
+                        e sistema de aprendizado automático integrado.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-brain-research"></i></div>
+                    <h3 class="card-title">On Platform → TOTVS Copilot</h3>
+                    <p class="card-description">
+                        Semantic search + RAG já implementado, com integração OpenAI/Azure OpenAI
+                        e vector store configurado.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-db"></i></div>
+                    <h3 class="card-title">Report Framework → Insights</h3>
+                    <p class="card-description">
+                        Geração de relatórios automatizada, ETL configurado e
+                        dashboards customizáveis prontos para uso.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-lock"></i></div>
+                    <h3 class="card-title">Avila Vault → TOTVS Central</h3>
+                    <p class="card-description">
+                        Gestão centralizada de secrets, criptografia AES-256,
+                        RBAC e auditoria imutável implementados.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-workflow"></i></div>
+                    <h3 class="card-title">Avila Flow → App Store Base</h3>
+                    <p class="card-description">
+                        Workflow automation com 8 actions pré-configuradas,
+                        templates reutilizáveis e integrações prontas.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-flash"></i></div>
+                    <h3 class="card-title">QuickStart → Onboarding Rápido</h3>
+                    <p class="card-description">
+                        Experiência em onboarding automatizado, IA para import de dados
+                        e wizards de configuração interativos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minha Proposta de Valor -->
+    <section class="content-section">
+        <div class="section-container">
+            <h2 class="section-title">O Que Trago Para a TOTVS</h2>
+            <p class="section-subtitle">
+                Transformar times técnicos em máquinas de entrega previsível
+            </p>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-crown"></i></div>
+                    <h3 class="card-title">Liderança Técnica</h3>
+                    <ul class="card-list">
+                        <li>Projetos de R$ 100K a R$ 5M+ gerenciados</li>
+                        <li>Histórico de entregas complexas no prazo</li>
+                        <li>Capacidade de escalar times rapidamente</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-strategy"></i></div>
+                    <h3 class="card-title">Visão Estratégica</h3>
+                    <ul class="card-list">
+                        <li>Alinhamento técnico com objetivos de negócio</li>
+                        <li>ROI mensurável em todas as iniciativas</li>
+                        <li>Roadmap de longo prazo com execução ágil</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-medal"></i></div>
+                    <h3 class="card-title">Cultura de Excelência</h3>
+                    <ul class="card-list">
+                        <li>Padrões de qualidade elevados e mensuráveis</li>
+                        <li>Documentação como cidadão de primeira classe</li>
+                        <li>Processos que escalam sem perder agilidade</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="iconoir-people-rounded"></i></div>
+                    <h3 class="card-title">Foco em Pessoas</h3>
+                    <ul class="card-list">
+                        <li>Desenvolvimento de times de alta performance</li>
+                        <li>Mentorias estruturadas e feedback contínuo</li>
+                        <li>Ambiente colaborativo de aprendizado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="content-section" id="contato" style="text-align: center;">
+        <div class="section-container">
+            <h2 class="section-title">Vamos Transformar a TOTVS Juntos?</h2>
+            <p class="section-subtitle" style="max-width: 800px; margin: 0 auto 3rem;">
+                De produto ERP para PLATAFORMA enterprise. Capturar R$ 93M+ ARR em oportunidades.
+                Liderar a transformação digital do maior player brasileiro.
+            </p>
+            <a href="mailto:nicolas@avila.inc" class="primary-btn" style="font-size: 1.1rem; padding: 1.2rem 3rem;">
+                Agendar Apresentação
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">
+                <strong>Nicolas Avila</strong> | Diretor de Projetos | Arquiteto de Soluções | Líder Técnico
+            </p>
+            <p class="footer-text">
+                "Orquestrando pessoas, processos e tecnologia para resultados excepcionais"
+            </p>
+            <p>
+                <a href="mailto:nicolas@avila.inc" class="footer-contact">nicolas@avila.inc</a> |
+                <a href="tel:+5517997811471" class="footer-contact">+55 17 99781-1471</a> |
+                <a href="https://github.com/avilaops/Avila-Framework" class="footer-contact">GitHub</a>
+            </p>
+            <p class="footer-text" style="margin-top: 2rem; font-size: 0.9rem;">
+                Proposta preparada para TOTVS | Novembro 2025 | Confidencial
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.8)';
+            } else {
+                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.6)';
+            }
+        });
+
+        // Print functionality
+        function printProposal() {
+            window.print();
+        }
+    </script>
+</body>
+
+</html>
