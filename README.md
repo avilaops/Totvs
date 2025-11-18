@@ -156,10 +156,10 @@ O Framework Avila é a demonstração prática da capacidade de orquestrar proje
 
 ## 📞 Contato
 
-**Nicolas Avila**  
-📧 nicolas@avila.inc  
-📱 +55 17 99781-1471  
-🔗 [GitHub/avilaops](https://github.com/avilaops)  
+**Nicolas Avila**
+📧 nicolas@avila.inc
+📱 +55 17 99781-1471
+🔗 [GitHub/avilaops](https://github.com/avilaops)
 🌐 [Framework Avila](https://github.com/avilaops/Avila-Framework)
 
 ---
@@ -167,7 +167,7 @@ O Framework Avila é a demonstração prática da capacidade de orquestrar proje
 ## 📝 Como Usar Esta Proposta
 
 ### Para Apresentação Visual
-Abra **`proposta_totvs.html`** em qualquer navegador moderno.  
+Abra **`proposta_totvs.html`** em qualquer navegador moderno.
 Design responsivo e otimizado para impressão.
 
 ### Para Análise Técnica
